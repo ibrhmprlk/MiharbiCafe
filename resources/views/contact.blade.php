@@ -119,32 +119,36 @@
         </p>
 
         <form method="POST" action="{{ route('contact.send') }}" class="space-y-5">
-            @csrf
+    @csrf
 
-            <div>
-                <label class="block text-sm font-medium mb-1">Name</label>
-                <input type="text" name="name" required
-                       class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500">
-            </div>
+    <div>
+        <label class="block text-sm font-medium mb-1">Name</label>
+        <input type="text" name="name" required
+               placeholder="Enter your full name"
+               class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500">
+    </div>
 
-            <div>
-                <label class="block text-sm font-medium mb-1">Email</label>
-                <input type="email" name="email" required
-                       class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500">
-            </div>
+    <div>
+        <label class="block text-sm font-medium mb-1">Email</label>
+        <input type="email" name="email" required
+               placeholder="Enter your email address"
+               class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500">
+    </div>
 
-            <div>
-                <label class="block text-sm font-medium mb-1">Message</label>
-                <textarea name="message" rows="5" required
-                          class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500"></textarea>
-            </div>
+    <div>
+        <label class="block text-sm font-medium mb-1">Message</label>
+        <textarea name="message" rows="5" required
+                  placeholder="Write your message here..."
+                  class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
 
-            <button type="submit"
-                    class="w-full py-3 rounded-xl font-semibold text-white
-                           bg-gradient-to-r from-blue-600 to-blue-700 hover:opacity-90">
-                Send Message
-            </button>
-        </form>
+    <button type="submit"
+            class="w-full py-3 rounded-xl font-semibold text-white
+                   bg-gradient-to-r from-blue-600 to-blue-700 hover:opacity-90">
+        Send Message
+    </button>
+</form>
+
     </div>
 </main>
 
