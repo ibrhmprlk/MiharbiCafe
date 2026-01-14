@@ -56,8 +56,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Phone</label>
-                <input type="text" name="phone" value="{{ old('phone', $ourPost->phone) }}"
-                    class="w-full rounded-lg border-gray-300 focus:border-green-500 focus:ring-green-500">
+              <input
+    type="tel"
+    name="phone"
+    value="{{ old('phone', $ourPost->phone) }}"
+    maxlength="18"
+    placeholder="+90 5xx xxx xx xx"
+    oninput="this.value = this.value.replace(/[^0-9+ ]/g, '')"
+    class="w-full rounded-lg border-gray-300 focus:border-green-500 focus:ring-green-500">
+
             </div>
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
