@@ -1,53 +1,47 @@
 <?php
-
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-
+use Illuminate\Mail\Mailables\Address;
 class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    // Bunlar public olduğu için Blade bunlara direkt erişir
     public $name;
     public $email;
     public $userMessage;
-
+    public $subject;
     public function __construct($data)
     {
-        $this->name = $data['name'];
-        $this->email = $data['email'];
+        $this->name        = $data['name'];
+        $this->email       = $data['email'];
         $this->userMessage = $data['message'];
+        $this->subject     = $data['subject'] ?? 'New Contact Message';
     }
-
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Yeni İletişim Mesajı',
-        );
-    }
-
-public function content(): Content
+ public function envelope(): Envelope
 {
-    return new Content(
-        view: 'emails.contact',
-        with: [
-            'name' => $this->name,
-            'email' => $this->email,
-            'userMessage' => $this->userMessage,
-        ],
+    return new Envelope(
+        from: new Address('ibrahimparlak282@gmail.com', 'İbrahim PARLAK'),
+        replyTo: [new Address($this->email, $this->name)],
+        subject: $this->subject,
     );
 }
-
-
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails.contact',
+            with: [
+                'name'        => $this->name,
+                'email'       => $this->email,
+                'userMessage' => $this->userMessage,
+                'subject'     => $this->subject,
+            ],
+        );
+    }
     public function attachments(): array
     {
         return [];
     }
 }
-
-
